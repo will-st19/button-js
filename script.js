@@ -1,58 +1,32 @@
 const redButton = document.querySelector('#red');
 const greenButton = document.querySelector('#green');
 const blueButton = document.querySelector('#blue');
-const h1resp = document.querySelector('#resp');
-const docBody = document.body
-const maxs = '89ABCDEF'
-const mins = '01234567'
+const colorDisplay = document.querySelector('#color-display');
+const docBody = document.body;
+const hexChars = '0123456789ABCDEF';
+
+function getRandomHexValue(min = 0, max = 255) {
+    const decimal = Math.floor(Math.random() * (max - min + 1)) + min;
+    const hex = decimal.toString(16).padStart(2, '0');
+    return hex;
+}
+
+function setBodyBackgroundColor(color) {
+    docBody.style.backgroundColor = color;
+    colorDisplay.textContent = color;
+}
 
 redButton.addEventListener('click', () => {
-    let tot = ''
-    let resultMax = ''
-    let resultMin = ''
-
-    while (resultMax.length < 2) {
-        resultMax = resultMax + maxs[Math.floor(Math.random() * maxs.length)]
-    }
-    while (resultMin.length < 4) {
-        resultMin = resultMin + mins[Math.floor(Math.random() * mins.length)]
-    }
-
-    tot = '#' + resultMax + resultMin
-    docBody.style.backgroundColor = tot
-    h1resp.innerHTML = tot
-})
+    const color = `#${getRandomHexValue(224, 255)}${getRandomHexValue(0, 95)}${getRandomHexValue(0, 95)}`;
+    setBodyBackgroundColor(color);
+});
 
 greenButton.addEventListener('click', () => {
-    let tot = ''
-    let resultMax = ''
-    let resultMin = ''
-
-    while (resultMax.length < 2) {
-        resultMax = resultMax + maxs[Math.floor(Math.random() * maxs.length)]
-    }
-    while (resultMin.length < 4) {
-        resultMin = resultMin + mins[Math.floor(Math.random() * mins.length)]
-    }
-
-    tot = '#' + resultMin.substring(0, 2) + resultMax + resultMin.substring(2)
-    docBody.style.backgroundColor = tot
-    h1resp.innerHTML = tot
-})
+    const color = `#${getRandomHexValue(0, 95)}${getRandomHexValue(224, 255)}${getRandomHexValue(0, 95)}`;
+    setBodyBackgroundColor(color);
+});
 
 blueButton.addEventListener('click', () => {
-    let tot = ''
-    let resultMax = ''
-    let resultMin = ''
-
-    while (resultMax.length < 2) {
-        resultMax = resultMax + maxs[Math.floor(Math.random() * maxs.length)]
-    }
-    while (resultMin.length < 4) {
-        resultMin = resultMin + mins[Math.floor(Math.random() * mins.length)]
-    }
-
-    tot = '#' + resultMin.substring(0, 2) + resultMin.substring(2) + resultMax
-    docBody.style.backgroundColor = tot
-    h1resp.innerHTML = tot
-})
+    const color = `#${getRandomHexValue(0, 95)}${getRandomHexValue(0, 95)}${getRandomHexValue(224, 255)}`;
+    setBodyBackgroundColor(color);
+});
